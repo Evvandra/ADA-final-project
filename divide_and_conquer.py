@@ -3,7 +3,7 @@ import math
 from util import City, read_cities, write_cities_and_return_them, generate_cities
 from datetime import datetime
 # import tracemalloc
-# from memory_profiler import profile 
+from memory_profiler import profile # [for space analysis]
 
 class DivideConquer:
     @staticmethod
@@ -16,20 +16,14 @@ class DivideConquer:
         self.cities = cities
         self.route = []
 
-    # @profile
+    @profile # [for space analysis]
     def run(self):
-        # tracemalloc.start()
-        plt.ion()
-        plt.show()
+        # plt.ion() # [remark when analysing runtime]
+        # plt.show() # [remark when analysing runtime]
 
         self.route = self.solve(self.cities)
 
-        print([edge[0].distance(edge[1]) for edge in self.route])
-
-        # tracemalloc.stop()
-
-        # stats = tracemalloc.get_traced_memory()
-
+        # print([edge[0].distance(edge[1]) for edge in self.route]) # [remark when analysing runtime]
         return sum([edge[0].distance(edge[1]) for edge in self.route])
 
     def solve(self, cities):
@@ -45,20 +39,20 @@ class DivideConquer:
             graph_2 = self.solve(half_2)
             merge = self.merge(graph_1, graph_2)
 
-            x = []
-            y = []
-            fig = plt.figure(0)
-            fig.suptitle('Divide and Conquer TSP')
-            for c1, c2 in merge:
-                x.append(c1.x)
-                x.append(c2.x)
-                y.append(c1.y)
-                y.append(c2.y)
-                plt.plot([c1.x, c2.x], [c1.y, c2.y], 'c')
+            # x = [] # [remark when analysing runtime]
+            # y = [] # [remark when analysing runtime]
+            # fig = plt.figure(0) # [remark when analysing runtime]
+            # fig.suptitle('Divide and Conquer TSP') # [remark when analysing runtime]
+            # for c1, c2 in merge: # [remark when analysing runtime]
+            #     x.append(c1.x) # [remark when analysing runtime]
+            #     x.append(c2.x) # [remark when analysing runtime]
+            #     y.append(c1.y) # [remark when analysing runtime]
+            #     y.append(c2.y) # [remark when analysing runtime]
+            #     plt.plot([c1.x, c2.x], [c1.y, c2.y], 'c') # [remark when analysing runtime]
 
-            plt.plot(x, y, 'ro')
-            plt.draw()
-            plt.pause(0.1)
+            # plt.plot(x, y, 'ro') # [remark when analysing runtime]
+            # plt.draw() # [remark when analysing runtime]
+            # plt.pause(0.1) # [remark when analysing runtime]
             return merge
 
     @staticmethod
@@ -105,33 +99,30 @@ class DivideConquer:
         return graph_1
 
 if __name__ == "__main__":
-    cities = read_cities(64)
+    cities = read_cities(8)
 
     divideConquer = DivideConquer(cities)
 
-    start = datetime.now()
+    start = datetime.now() # [Unremark when analysing runtime]
 
-    divideConquer.run()
-    print("Path cost : ", divideConquer.run())
-    print("Route : ", divideConquer.route)
-
-    # print("Memory usage: ", stats)
-
+    divideConquer.run() # [Unremark when analysing runtime]
+    # print("Path cost : ", divideConquer.run()) # [remark when analysing runtime]
+    # print("Route : ", divideConquer.route) # [remark when analysing runtime]
 
     x = []
     y = []
-    fig = plt.figure(0)
-    fig.suptitle('Divide and Conquer TSP')
-    for c1, c2 in divideConquer.route:
-        x.append(c1.x)
-        x.append(c2.x)
-        y.append(c1.y)
-        y.append(c2.y)
-        plt.plot([c1.x, c2.x], [c1.y, c2.y], 'g')
+    # fig = plt.figure(0) # [remark when analysing runtime]
+    # fig.suptitle('Divide and Conquer TSP') # [remark when analysing runtime]
+    # for c1, c2 in divideConquer.route: # [remark when analysing runtime]
+    #     x.append(c1.x) # [remark when analysing runtime]
+    #     x.append(c2.x) # [remark when analysing runtime]
+    #     y.append(c1.y) # [remark when analysing runtime]
+    #     y.append(c2.y) # [remark when analysing runtime]
+    #     plt.plot([c1.x, c2.x], [c1.y, c2.y], 'g') # [remark when analysing runtime]
 
-    end = datetime.now()
-    exec_time = (end - start).total_seconds() * 10**3
-    print(f"Execution time = {exec_time} ms")
+    end = datetime.now() # [Unremark when analysing runtime]
+    exec_time = (end - start).total_seconds() * 10**3 # [Unremark when analysing runtime]
+    print(f"Execution time = {exec_time} ms") # [Unremark when analysing runtime]
 
-    plt.plot(x, y, 'ro')
-    plt.show(block=True)
+    # plt.plot(x, y, 'ro') # [remark when analysing runtime]
+    # plt.show(block=True) # [remark when analysing runtime]
