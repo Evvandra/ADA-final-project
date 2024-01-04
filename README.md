@@ -20,3 +20,5 @@
 
 ## In the terminal we also provide the user with the route and also the execution time to run the algorithm.
 ![alt text](images/image2.png)
+
+* Note : regarding time and space test, some lines of codes are already provided with notes (comments) of which line to remark/unremark for the test to be done
